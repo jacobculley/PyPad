@@ -1,11 +1,13 @@
 import setuptools
 
+from pypad import __version__
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="PyPad",
-    version="0.1.0",
+    version=__version__,
     author='Fuchsiaff',
     maintainer="Jacob Culley",
     maintainer_email="jacob@culley.me",
@@ -14,6 +16,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/jacobculley/PyPad",
     packages=setuptools.find_packages(),
+    include_package_data=True,
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
