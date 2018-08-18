@@ -89,19 +89,22 @@ class Config:
         except FileNotFoundError:
             dialog.FatalError("Couldn't find", self.config_path)
 
-    def get(self, name=None, default=None):
+    def get(self, name=None, default=None, fallback: bool = True):
         """
         get a config value
         :param name: key to fetch
         :param default: value to fallback to if the key is not found
+        :param fallback: should it fetch from the fallback config if the value is not found
         :return: requested config value
         """
+        section = self.merged if fallback else self.main
+
         if name is None:
-            return self.merged
+            return section
         if isinstance(name, list) or isinstance(name, tuple):
             name = '.'.join(name)
         keys = name.split('.')
-        section = self.merged
+
         try:
             for key in keys:
                 section = section[key]
